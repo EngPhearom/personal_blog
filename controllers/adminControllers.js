@@ -98,6 +98,72 @@ const delete_get = (req, res) => {
     })
 }
 
+const getall_skill = (req, res) =>{
+    con.query('select * from skill', (err, result) =>{
+        if(err){
+            console.log(err)
+        }
+        else{
+            res.render('admin/list-skill', {result})
+        }
+    })
+}
+
+const create_skill_get = (req, res) =>{
+    res.render('admin/create-skill');
+}
+
+const create_skill_post = (req, res) =>{
+    var sql = 'INSERT INTO `skill` (`nameskill`, `value`) values (?,?)'
+    var body = req.body;
+    var arr = [body.nameskill, body.value]
+    con.query(sql,arr,(err, result) =>{
+        if(err){
+            console.log(err)
+        }
+        else{
+            res.redirect('/admin/skill-info')
+        }
+    })
+}
+
+const edit_skill_get = (req, res) =>{
+    con.query('select * from skill where id = ?', [req.params.id], (err, result) =>{
+        if(err){
+            console.log(err)
+        }
+        else{
+            res.render('admin/edit-skill', {result})
+        }
+    })
+}
+
+const edit_skill_post = (req, res) =>{
+    var sql = 'UPDATE `skill` SET `nameskill` = ?, `value` = ? where `id` = ?';
+    var body = req.body;
+    var arr = [body.nameskill, body.value, body.hiddenid]
+    con.query(sql, arr, (err, result) => {
+        if(err){
+            console.log(err)
+        }
+        else{
+            res.redirect('/admin/skill-info')
+        }
+    })
+}
+
+const delete_skill = (req, res) =>{
+    var sql = 'delete from skill where id =?';
+    con.query(sql, [req.params.id], (err, result) =>{
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.redirect('/admin/skill-info');
+        }
+    })
+}
+
 module.exports = {
     dashboard,
     getAll,
@@ -105,5 +171,11 @@ module.exports = {
     create_post,
     edit_get,
     edit_post,
-    delete_get
+    delete_get,
+    getall_skill,
+    create_skill_get,
+    create_skill_post,
+    edit_skill_get,
+    edit_skill_post,
+    delete_skill
 }
