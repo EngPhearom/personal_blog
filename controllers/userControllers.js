@@ -1,7 +1,7 @@
 const con = require('../config/db');
 
 const getAll = (req, res) => {
-    con.query('select * from user', (err, result) => {
+    con.query('SELECT * FROM `user` join skill', (err, result) => {
         if(err){
             console.log(err);
         }else{
