@@ -54,7 +54,7 @@ CREATE TABLE `skill` (
 --
 
 INSERT INTO `user` (`id`, `fullname`, `nick_name`, `avarta`, `current_position`, `status`, `email`, `phone`, `about_me`) VALUES
-(1, 'Chen Sovanminea', 'Jerry', '1690059814515black.jpg', 'QA', 'Married', 'chmapikeat@gmail.com', '086993947', 'Never Before');
+(1, 'Eng Phirom', 'Phirom', '1735957212622photo_2024-09-03_13-54-33.jpg', 'QA', 'Single', 'engphearom55@gmail.com', '085394984', 'Never Before');
 
 --
 -- Indexes for dumped tables
